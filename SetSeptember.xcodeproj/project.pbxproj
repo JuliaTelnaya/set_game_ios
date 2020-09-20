@@ -16,6 +16,8 @@
 		189AE85225154BC4009AFFCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189AE85025154BC4009AFFCE /* LaunchScreen.storyboard */; };
 		189AE85A25154C0A009AFFCE /* SetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AE85925154C0A009AFFCE /* SetModel.swift */; };
 		189AE85C25154C29009AFFCE /* SetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AE85B25154C29009AFFCE /* SetViewModel.swift */; };
+		18FB11B92517B44A00D4E18B /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB11B82517B44A00D4E18B /* GridLayout.swift */; };
+		18FB11BB2517B59700D4E18B /* Array+Identifible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB11BA2517B59700D4E18B /* Array+Identifible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		189AE85325154BC4009AFFCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189AE85925154C0A009AFFCE /* SetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetModel.swift; sourceTree = SOURCE_ROOT; };
 		189AE85B25154C29009AFFCE /* SetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewModel.swift; sourceTree = "<group>"; };
+		18FB11B82517B44A00D4E18B /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		18FB11BA2517B59700D4E18B /* Array+Identifible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Identifible.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +66,14 @@
 		189AE84425154BBC009AFFCE /* SetSeptember */ = {
 			isa = PBXGroup;
 			children = (
-				1887386E251629650027F671 /* Grid.swift */,
 				189AE85925154C0A009AFFCE /* SetModel.swift */,
 				189AE85B25154C29009AFFCE /* SetViewModel.swift */,
+				189AE84925154BBC009AFFCE /* ContentView.swift */,
 				189AE84525154BBC009AFFCE /* AppDelegate.swift */,
 				189AE84725154BBC009AFFCE /* SceneDelegate.swift */,
-				189AE84925154BBC009AFFCE /* ContentView.swift */,
+				1887386E251629650027F671 /* Grid.swift */,
+				18FB11B82517B44A00D4E18B /* GridLayout.swift */,
+				18FB11BA2517B59700D4E18B /* Array+Identifible.swift */,
 				189AE84B25154BC4009AFFCE /* Assets.xcassets */,
 				189AE85025154BC4009AFFCE /* LaunchScreen.storyboard */,
 				189AE85325154BC4009AFFCE /* Info.plist */,
@@ -158,8 +164,10 @@
 				189AE85C25154C29009AFFCE /* SetViewModel.swift in Sources */,
 				189AE84625154BBC009AFFCE /* AppDelegate.swift in Sources */,
 				189AE84825154BBC009AFFCE /* SceneDelegate.swift in Sources */,
+				18FB11BB2517B59700D4E18B /* Array+Identifible.swift in Sources */,
 				189AE85A25154C0A009AFFCE /* SetModel.swift in Sources */,
 				189AE84A25154BBC009AFFCE /* ContentView.swift in Sources */,
+				18FB11B92517B44A00D4E18B /* GridLayout.swift in Sources */,
 				1887386F251629650027F671 /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

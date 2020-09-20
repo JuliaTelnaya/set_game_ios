@@ -15,8 +15,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            ForEach(viewModel.cards) { card in
-            CardView(card: card)
+            Grid(viewModel.cards) { card in
+                CardView(card: card).onTapGesture {
+                    self.viewModel.choose(card: card)
+                }
             }
             Text("Hello, World!")
         }
@@ -26,13 +28,22 @@ struct ContentView: View {
 struct CardView: View {
     var card: SetGame.Card
     var body: some View {
-        VStack {
-            Text("\(card.count)")
-            Text(card.shade)
-            Text(card.shape)
-        }
+        ZStack{
+            // TODO: -logic of matching
+            RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+            RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+            VStack {
+                Text("\(card.count)")
+                Text(card.shade)
+                Text(card.shape)
+            }}
+        
         .foregroundColor(card.color)
     }
+    
+    // MARK: - Drawing constants
+    let cornerRadius: CGFloat = 10.0
+    let edgeLineWidth: CGFloat = 3
 }
 
 

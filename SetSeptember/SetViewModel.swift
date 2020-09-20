@@ -16,6 +16,10 @@ class SetGameVM: ObservableObject {
         model.cards
     }
     
+    func choose(card: SetGame.Card) {
+        model.choose(card: card)
+    }
+    
     static func createSetGame() -> SetGame {
         
         let colors = [Color.orange,Color.red, Color.purple]
@@ -28,6 +32,8 @@ class SetGameVM: ObservableObject {
         
         return game
     }
+    
+    
 }
 
 /*
