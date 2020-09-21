@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Grid(viewModel.cards) { card in
+            Grid(Array(viewModel.cards[0...3])) { card in
                 CardView(card: card).onTapGesture {
                     self.viewModel.choose(card: card)
                 }
@@ -33,6 +33,7 @@ struct CardView: View {
             RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
             RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
             VStack {
+                Diamond()
                 Text("\(card.count)")
                 Text(card.shade)
                 Text(card.shape)

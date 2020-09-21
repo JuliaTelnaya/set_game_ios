@@ -42,6 +42,7 @@ struct SetGame {
             }
         }
         cards.shuffle()
+        
     }
     
     
