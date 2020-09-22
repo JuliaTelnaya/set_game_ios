@@ -21,7 +21,23 @@ struct Diamond: Shape {
         p.addLine(to: corner2)
         p.addLine(to: corner3)
         p.addLine(to: corner4)
+        p.addLine(to: corner1)
         
         return p
     }
+    
 }
+
+extension Shape {
+    /// fills and strokes a shape
+    public func fill<S:ShapeStyle>(
+        _ fillContent: S,
+        stroke       : StrokeStyle
+    ) -> some View {
+        ZStack {
+            self.fill(fillContent)
+            self.stroke(style:stroke)
+        }
+    }
+}
+

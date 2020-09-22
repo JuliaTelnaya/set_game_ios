@@ -24,20 +24,35 @@ class SetGameVM: ObservableObject {
         
         let colors = [Color.orange,Color.red, Color.purple]
         
-        let shapes = ["circle","rectangle","diamond"]
+        let shapes = shape.allCases
         
-        let shades = ["bold","transparent","semi-transparent"]
-        
+        let shades = shade.allCases
         let game = SetGame(colors: colors, shapes: shapes, shades: shades)
         
         return game
     }
     
+    enum shade: CaseIterable{
+        case bold, transparent, semiTransparent
+        
+        var opacityValue: Double  {
+            switch self {
+            case .bold: return 1
+            case .semiTransparent: return 0.3
+            case .transparent: return 0
+            }
+        }
+        
+    }
+    
+    enum shape: CaseIterable{
+        case circle, rectangle, diamond
+        }
+   // https://www.hackingwithswift.com/books/ios-swiftui/switching-view-states-with-enums
+    
+    
     
 }
 
-/*
-enum Shades: CaseIterable {
-    case bold, transparent,
-}
- */
+
+

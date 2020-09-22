@@ -27,7 +27,7 @@ struct SetGame {
         return score
     }
     
-    init (colors: Array<Color>, shapes: Array<String>, shades: Array<String>) {
+    init (colors: Array<Color>, shapes: Array<SetGameVM.shape>, shades: Array<SetGameVM.shade>) {
          ///allcases
         cards = Array<Card>()
         var id = 0
@@ -49,13 +49,14 @@ struct SetGame {
     struct Card: Identifiable {
         var id: Int
         var color: Color
-        var shape: String
+        var shape: SetGameVM.shape
         var count: Int
-        var shade: String
+        var shade: SetGameVM.shade
         var isMatched = false
         var isDeck = true
         var isDisappeared = false //удалить просто
     }
+    
     
 
 
