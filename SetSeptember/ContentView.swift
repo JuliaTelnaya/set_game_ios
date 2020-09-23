@@ -29,31 +29,23 @@ struct CardView: View {
     var card: SetGame.Card
     
     var body: some View {
-        ZStack{
-            // TODO: -logic of matching
-            RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-            RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
             VStack {
                 ForEach(Array(0...card.count-1), id: \.self) { _ in
-                    Group {
+                    ZStack {
                         if self.card.shape == .circle {
-                            Circle().fill(self.card.color.opacity(self.card.shade.opacityValue),stroke: StrokeStyle(lineWidth: self.edgeLineWidth))
+                            Circle().colorShape(color: card.color, shade: card.shade)
                         } else if self.card.shape  == .rectangle {
-                            Rectangle().fill(self.card.color.opacity(self.card.shade.opacityValue),stroke: StrokeStyle(lineWidth: self.edgeLineWidth))
+                            Rectangle().colorShape(color: card.color, shade: card.shade)
                         } else if self.card.shape == .diamond {
-                            Diamond().fill(self.card.color.opacity(self.card.shade.opacityValue),stroke: StrokeStyle(lineWidth: self.edgeLineWidth))
+                            Diamond().colorShape(color: card.color, shade: card.shade)
                         }
                     }
                     .padding(10)
                 }
-            }}
-        
+            }
+            .cardify(isMatched: card.isMatched)
         .foregroundColor(card.color)
     }
-    
-    // MARK: - Drawing constants
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3
 }
 
 
