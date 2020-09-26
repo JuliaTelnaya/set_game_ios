@@ -16,8 +16,16 @@ class SetGameVM: ObservableObject {
         model.cards
     }
     
+    var cardsInGame: Array<SetGame.Card> {
+        model.cardsInGame
+    }
+    
     func choose(card: SetGame.Card) {
         model.choose(card: card)
+    }
+    
+    func resetGame() {
+        model = SetGameVM.createSetGame()
     }
     
     static func createSetGame() -> SetGame {
@@ -42,7 +50,6 @@ class SetGameVM: ObservableObject {
             case .transparent: return 0
             }
         }
-        
     }
     
     enum shape: CaseIterable{

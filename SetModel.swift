@@ -42,8 +42,23 @@ struct SetGame {
             }
         }
         cards.shuffle()
-        
+        // MARK: make isDeal
+        for card in cards[0...11] {
+            cards[card.id].isDeal = true}
     }
+
+    var cardsInGame: Array<SetGame.Card> {
+        get {var arrayIsDeal: Array<SetGame.Card> = []
+            for card in cards {
+                if card.isDeal == true && card.isDisappeared == false{
+                    arrayIsDeal.append(card)
+                }
+                print(arrayIsDeal.count)
+            }
+            return arrayIsDeal
+        }
+    }
+
     
     
     struct Card: Identifiable {
@@ -53,7 +68,7 @@ struct SetGame {
         var count: Int
         var shade: SetGameVM.shade
         var isMatched = false
-        var isDeck = true
+        var isDeal = false
         var isDisappeared = false //удалить просто
     }
     

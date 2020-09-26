@@ -12,15 +12,19 @@ struct ContentView: View {
     
     @ObservedObject var viewModel: SetGameVM
     
-    
     var body: some View {
         VStack {
-            Grid(Array(viewModel.cards[0...80])) { card in
+            Grid(viewModel.cardsInGame) { card in
                 CardView(card: card).onTapGesture {
-                    self.viewModel.choose(card: card)
+                       self.viewModel.choose(card: card)
                 }
             }
-            Text("Hello, World!")
+            Button(action: {
+                withAnimation(.easeInOut(duration: 1)) {
+                    self.viewModel.resetGame()
+                }
+            }, label: {
+                Text("NEW GAME")})
         }
     }
 }
