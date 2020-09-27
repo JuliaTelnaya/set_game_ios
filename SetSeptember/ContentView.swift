@@ -16,11 +16,13 @@ struct ContentView: View {
         VStack {
             Grid(viewModel.cardsInGame) { card in
                 CardView(card: card).onTapGesture {
-                       self.viewModel.choose(card: card)
+                    withAnimation(.easeIn(duration: 2)) {
+                        self.viewModel.choose(card: card)
+                    }
                 }
             }
             Button(action: {
-                withAnimation(.easeInOut(duration: 1)) {
+                withAnimation(.linear(duration: 1)) {
                     self.viewModel.resetGame()
                 }
             }, label: {
@@ -29,15 +31,20 @@ struct ContentView: View {
     }
 }
 
+// TODO: view modifiers https://developer.apple.com/documentation/swiftui/rotatedshape-view-modifiers
+
 struct CardView: View {
     var card: SetGame.Card
     
+    @ViewBuilder
     var body: some View {
             VStack {
                 ForEach(Array(0...card.count-1), id: \.self) { _ in
                     ZStack {
                         if self.card.shape == .circle {
                             Circle().colorShape(color: card.color, shade: card.shade)
+                                .colorInvert()
+
                         } else if self.card.shape  == .rectangle {
                             Rectangle().colorShape(color: card.color, shade: card.shade)
                         } else if self.card.shape == .diamond {
@@ -45,6 +52,7 @@ struct CardView: View {
                         }
                     }
                     .padding(10)
+                    
                 }
             }
             .cardify(isMatched: card.isMatched)

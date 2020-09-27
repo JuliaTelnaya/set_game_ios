@@ -19,6 +19,9 @@ struct SetGame {
     // MARK: Work with intent
     mutating func choose(card: Card) {
         print ("card choosen: \(card)")
+        if let chosenIndex = cards.firstIndex(matching: card){
+            cards[chosenIndex].isMatched = true
+        }
     }
     
     // MARK: Calculate score
