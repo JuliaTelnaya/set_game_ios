@@ -14,21 +14,59 @@ struct SetGame {
     var cards: Array<Card>
     var score: Int?
     
+    var indexOfChosenCard: Int? {
+        get{cards.indices.filter {cards[$0].isChosen}.only}
+        set{
+            for index in cards.indices{
+                cards[index].isChosen = index == newValue}
+        }
+    }
     
+    let card1 = Card(id: 82, color: Color.orange, shape: .circle, count: 2, shade: .bold)
+    
+    let card2 = Card(id: 83, color: Color.orange, shape: .diamond, count: 2, shade: .bold)
+    
+    let card3 = Card(id: 84, color: Color.orange, shape: .rectangle, count: 2, shade: .bold)
+    
+    func checkSet (card1: Card, card2: Card, card3: Card) -> Bool {
+        let cards = [card1, card2, card3]
+        var colorSet = Set<Color>()
+        var shadeSet =  Set<SetGameVM.shade>()
+        var shapeSet = Set<SetGameVM.shape>()
+        var countSet = Set<Int>()
+        
+        for card in cards {
+            colorSet.insert(card.color)
+            shadeSet.insert(card.shade)
+            shapeSet.insert(card.shape)
+            countSet.insert(card.count)
+        }
+        
+        // if colors(shapes..) are similar, the length of set is one. If all colors are different, the length of set is 3.
+        let colorCheck: Bool = colorSet.count == 2 ? false : true
+        let shadeCheck: Bool = shadeSet.count == 2 ? false : true
+        let shapeCheck: Bool = shapeSet.count == 2 ? false : true
+        let countCheck: Bool = countSet.count == 2 ? false : true
+
+        return colorCheck && shadeCheck && shapeCheck && countCheck
+    }
     
     // MARK: Work with intent
     mutating func choose(card: Card) {
         print ("card choosen: \(card)")
-        if let chosenIndex = cards.firstIndex(matching: card){
-            cards[chosenIndex].isMatched = true
+        print(checkSet(card1: card1, card2: card2, card3: card3))
+        if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isChosen{
+            if let potentialMatchIndex = indexOfChosenCard {
+                cards[chosenIndex].isMatched = true
+                
+            } else {
+                indexOfChosenCard = chosenIndex
+            }
+            
         }
     }
     
-    // MARK: Calculate score
-    func calculateScore (score: Int?) -> Int {
-        var score = score ?? 0
-        return score
-    }
+
     
     init (colors: Array<Color>, shapes: Array<SetGameVM.shape>, shades: Array<SetGameVM.shade>) {
          ///allcases
@@ -45,21 +83,29 @@ struct SetGame {
             }
         }
         cards.shuffle()
+        
         // MARK: make isDeal
         for card in cards[0...11] {
             cards[card.id].isDeal = true}
     }
-
+    
+    
+    // TODO: -temporary -delete
     var cardsInGame: Array<SetGame.Card> {
         get {var arrayIsDeal: Array<SetGame.Card> = []
             for card in cards {
-                if card.isDeal == true && card.isDisappeared == false{
+                if card.isDeal == true && card.isDiscard == false{
                     arrayIsDeal.append(card)
                 }
-                print(arrayIsDeal.count)
             }
             return arrayIsDeal
         }
+    }
+    
+    // MARK: Calculate score
+    func calculateScore (score: Int?) -> Int {
+        var score = score ?? 0
+        return score
     }
 
     
@@ -70,9 +116,10 @@ struct SetGame {
         var shape: SetGameVM.shape
         var count: Int
         var shade: SetGameVM.shade
+        var isChosen = false
         var isMatched = false
         var isDeal = false
-        var isDisappeared = false //удалить просто
+        var isDiscard = false
     }
     
     

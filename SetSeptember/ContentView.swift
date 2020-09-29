@@ -14,13 +14,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            //if deal match discard
             Grid(viewModel.cardsInGame) { card in
                 CardView(card: card).onTapGesture {
                     withAnimation(.easeIn(duration: 2)) {
                         self.viewModel.choose(card: card)
                     }
                 }
-            }
+            }.transition(AnyTransition.scale)
             Button(action: {
                 withAnimation(.linear(duration: 1)) {
                     self.viewModel.resetGame()

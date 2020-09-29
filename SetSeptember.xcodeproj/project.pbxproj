@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184212D02523772100CD54CA /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184212CF2523772100CD54CA /* Array+Only.swift */; };
 		18422AFD251B5BB800B4EE0E /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18422AFC251B5BB800B4EE0E /* Cardify.swift */; };
 		18422B05251B6C4B00B4EE0E /* Shape+ColorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18422B04251B6C4B00B4EE0E /* Shape+ColorShape.swift */; };
 		1887386F251629650027F671 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887386E251629650027F671 /* Grid.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		184212CF2523772100CD54CA /* Array+Only.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
 		18422AFC251B5BB800B4EE0E /* Cardify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 		18422B04251B6C4B00B4EE0E /* Shape+ColorShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+ColorShape.swift"; sourceTree = "<group>"; };
 		1887386E251629650027F671 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
@@ -72,15 +74,16 @@
 		189AE84425154BBC009AFFCE /* SetSeptember */ = {
 			isa = PBXGroup;
 			children = (
-				18422AFC251B5BB800B4EE0E /* Cardify.swift */,
 				189AE85925154C0A009AFFCE /* SetModel.swift */,
 				189AE85B25154C29009AFFCE /* SetViewModel.swift */,
 				189AE84925154BBC009AFFCE /* ContentView.swift */,
+				18422AFC251B5BB800B4EE0E /* Cardify.swift */,
 				18CECCF2251926DF00A32C11 /* Diamond.swift */,
 				18422B04251B6C4B00B4EE0E /* Shape+ColorShape.swift */,
 				1887386E251629650027F671 /* Grid.swift */,
 				18FB11B82517B44A00D4E18B /* GridLayout.swift */,
 				18FB11BA2517B59700D4E18B /* Array+Identifible.swift */,
+				184212CF2523772100CD54CA /* Array+Only.swift */,
 				189AE84525154BBC009AFFCE /* AppDelegate.swift */,
 				189AE84725154BBC009AFFCE /* SceneDelegate.swift */,
 				189AE84B25154BC4009AFFCE /* Assets.xcassets */,
@@ -173,6 +176,7 @@
 				189AE85C25154C29009AFFCE /* SetViewModel.swift in Sources */,
 				189AE84625154BBC009AFFCE /* AppDelegate.swift in Sources */,
 				189AE84825154BBC009AFFCE /* SceneDelegate.swift in Sources */,
+				184212D02523772100CD54CA /* Array+Only.swift in Sources */,
 				18FB11BB2517B59700D4E18B /* Array+Identifible.swift in Sources */,
 				189AE85A25154C0A009AFFCE /* SetModel.swift in Sources */,
 				189AE84A25154BBC009AFFCE /* ContentView.swift in Sources */,

@@ -16,6 +16,7 @@ class SetGameVM: ObservableObject {
         model.cards
     }
     
+    
     var cardsInGame: Array<SetGame.Card> {
         model.cardsInGame
     }
