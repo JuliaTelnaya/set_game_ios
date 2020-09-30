@@ -46,8 +46,8 @@
             filePath = "SetModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "choose(card:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,10 +62,10 @@
             filePath = "SetModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "SetGame"
-            landmarkType = "14">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "choose(card:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

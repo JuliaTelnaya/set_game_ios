@@ -14,22 +14,21 @@ struct SetGame {
     var cards: Array<Card>
     var score: Int?
     
-    var indexOfChosenCard: Int? {
+    var indexOfChosenCard: Int?{
         get{cards.indices.filter {cards[$0].isChosen}.only}
         set{
             for index in cards.indices{
                 cards[index].isChosen = index == newValue}
         }
     }
+
     
-    let card1 = Card(id: 82, color: Color.orange, shape: .circle, count: 2, shade: .bold)
-    
-    let card2 = Card(id: 83, color: Color.orange, shape: .diamond, count: 2, shade: .bold)
-    
-    let card3 = Card(id: 84, color: Color.orange, shape: .rectangle, count: 2, shade: .bold)
-    
-    func checkSet (card1: Card, card2: Card, card3: Card) -> Bool {
-        let cards = [card1, card2, card3]
+    func checkSet (indices: Set<Int>) -> Bool {
+        var cards =  Array<Card>()
+        for index in indices {
+            cards.append(self.cards[index])
+        }
+
         var colorSet = Set<Color>()
         var shadeSet =  Set<SetGameVM.shade>()
         var shapeSet = Set<SetGameVM.shape>()
@@ -47,26 +46,45 @@ struct SetGame {
         let shadeCheck: Bool = shadeSet.count == 2 ? false : true
         let shapeCheck: Bool = shapeSet.count == 2 ? false : true
         let countCheck: Bool = countSet.count == 2 ? false : true
-
+        
+        print("color check \(colorCheck)")
+        print("shade check \(shadeCheck)")
+        print("shape check \(shapeCheck)")
+        print("count check \(countCheck)")
+        
+        
         return colorCheck && shadeCheck && shapeCheck && countCheck
     }
     
+    var chosenCardsIndices = Set<Int>()
     // MARK: Work with intent
     mutating func choose(card: Card) {
         print ("card choosen: \(card)")
-        print(checkSet(card1: card1, card2: card2, card3: card3))
         if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isChosen{
-            if let potentialMatchIndex = indexOfChosenCard {
-                cards[chosenIndex].isMatched = true
-                
+            chosenCardsIndices.insert(chosenIndex)
+            if chosenCardsIndices.count == 3 {
+                print(checkSet(indices: chosenCardsIndices))
+                if checkSet(indices: chosenCardsIndices) {
+                    for index in chosenCardsIndices {
+                        cards[index].isDiscard = true
+                    }
+                }
+                chosenCardsIndices = Set<Int>()
+               
             } else {
-                indexOfChosenCard = chosenIndex
+                cards[chosenIndex].isMatched = true
             }
-            
         }
     }
     
-
+    mutating func new3cards() {
+        let cardsInDeck = cards.filter{!$0.isDeal && !$0.isDiscard}
+        for card in cardsInDeck[0...2] {
+            if let chosenIndex = cards.firstIndex(matching: card) {
+                cards[chosenIndex].isDeal = true
+            }
+        }
+    }
     
     init (colors: Array<Color>, shapes: Array<SetGameVM.shape>, shades: Array<SetGameVM.shade>) {
          ///allcases
@@ -90,17 +108,6 @@ struct SetGame {
     }
     
     
-    // TODO: -temporary -delete
-    var cardsInGame: Array<SetGame.Card> {
-        get {var arrayIsDeal: Array<SetGame.Card> = []
-            for card in cards {
-                if card.isDeal == true && card.isDiscard == false{
-                    arrayIsDeal.append(card)
-                }
-            }
-            return arrayIsDeal
-        }
-    }
     
     // MARK: Calculate score
     func calculateScore (score: Int?) -> Int {
@@ -110,7 +117,7 @@ struct SetGame {
 
     
     
-    struct Card: Identifiable {
+    struct Card: Identifiable, Hashable {
         var id: Int
         var color: Color
         var shape: SetGameVM.shape

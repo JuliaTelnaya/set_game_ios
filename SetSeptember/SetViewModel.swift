@@ -17,16 +17,16 @@ class SetGameVM: ObservableObject {
     }
     
     
-    var cardsInGame: Array<SetGame.Card> {
-        model.cardsInGame
-    }
-    
     func choose(card: SetGame.Card) {
         model.choose(card: card)
     }
     
     func resetGame() {
         model = SetGameVM.createSetGame()
+    }
+    
+    func new3cards() {
+        model.new3cards()
     }
     
     static func createSetGame() -> SetGame {
