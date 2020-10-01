@@ -60,21 +60,37 @@ struct SetGame {
     // MARK: Work with intent
     mutating func choose(card: Card) {
         print ("card choosen: \(card)")
-        if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isChosen{
-            chosenCardsIndices.insert(chosenIndex)
-            if chosenCardsIndices.count == 3 {
-                print(checkSet(indices: chosenCardsIndices))
-                if checkSet(indices: chosenCardsIndices) {
-                    for index in chosenCardsIndices {
-                        cards[index].isDiscard = true
-                    }
-                }
-                chosenCardsIndices = Set<Int>()
-               
+        if let chosenIndex = cards.firstIndex(matching: card) {
+            
+            if cards[chosenIndex].isChosen {
+                //deselection
+                cards[chosenIndex].isChosen = false
             } else {
-                cards[chosenIndex].isMatched = true
+                
+                if chosenCardsIndices.count == 3 {
+                    print(checkSet(indices: chosenCardsIndices))
+                    if checkSet(indices: chosenCardsIndices) {
+                        for index in chosenCardsIndices {
+                            cards[index].isDiscard = true
+                            cards[index].isMatched = true
+                        }
+                        
+                    } else {
+                        for index in chosenCardsIndices {
+                            cards[index].isChosen = false
+                        }
+                    }
+                    chosenCardsIndices = Set<Int>()
+                }
+                cards[chosenIndex].isChosen = true
+                chosenCardsIndices.insert(chosenIndex)
+                
             }
+            
+        
+            
         }
+
     }
     
     mutating func new3cards() {
@@ -128,9 +144,5 @@ struct SetGame {
         var isDeal = false
         var isDiscard = false
     }
-    
-    
-
-
 }
 

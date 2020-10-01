@@ -12,36 +12,37 @@ struct ContentView: View {
     
     @ObservedObject var viewModel: SetGameVM
     
-    
-    //@ViewBuilder
     var body: some View {        
         VStack {
-            //if deal match discard
             Grid(viewModel.cards.filter{$0.isDeal && !$0.isDiscard}) { card in
                 CardView(card: card).onTapGesture {
-                    withAnimation(.easeIn(duration: 2)) {
+                    // choose card
+                    withAnimation(.linear(duration: 2)) {
                         self.viewModel.choose(card: card)
                     }
                 }
-            }.transition(AnyTransition.scale)
+            }
+            .padding(5)
+            //.transition(AnyTransition.scale)
+            
             HStack {
+                
                 Button(action: {
                     withAnimation(.linear(duration: 1)) {
                         self.viewModel.new3cards()
                     }
                 }, label: {
                     Text("+3 cards")})
+                
                 Button(action: {
-                    withAnimation(.linear(duration: 1)) {
+                    withAnimation(.easeInOut(duration: 1)) {
                         self.viewModel.resetGame()
                     }
                 }, label: {
                     Text("NEW GAME")})
             }
-            
-            
         }
-        .transition(AnyTransition.scale)
+        //.transition(AnyTransition.scale)
     }
 }
 
@@ -58,19 +59,29 @@ struct CardView: View {
                     ZStack {
                         if self.card.shape == .circle {
                             Circle().colorShape(color: card.color, shade: card.shade)
-                                //.colorInvert()
                         } else if self.card.shape  == .rectangle {
                             Rectangle().colorShape(color: card.color, shade: card.shade)
                         } else if self.card.shape == .diamond {
                             Diamond().colorShape(color: card.color, shade: card.shade)
                         }
                     }
-                    .padding(10)
+                    .aspectRatio(2/3,contentMode: .fit)
                     
+                    //animation of shapes
+                    //.rotation3DEffect(Angle.degrees(card.isChosen ? 0: 180), axis: (x: 1, y: 0, z: 0))
                 }
-            }
-            .cardify(isMatched: card.isMatched)
+            }.padding()
+            
+            //cards are drawn
+            .cardify(isChosen: card.isChosen)
+            
             .foregroundColor(card.color)
+            //between cards padding
+            .padding(5)
+            .transition(AnyTransition.offset().animation(.easeInOut(duration: 1.0)))
+                        
+            //.onAppear(        )
+
     }
 }
 
